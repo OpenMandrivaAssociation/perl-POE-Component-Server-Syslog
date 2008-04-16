@@ -1,6 +1,6 @@
 
 %define realname   POE-Component-Server-Syslog
-%define version    1.14
+%define version    1.16
 %define release    %mkrel 1
 
 Name:       perl-%{realname}
