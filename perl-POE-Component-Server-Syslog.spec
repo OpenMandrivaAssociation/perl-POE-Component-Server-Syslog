@@ -1,26 +1,23 @@
-
-%define realname   POE-Component-Server-Syslog
+%define module   POE-Component-Server-Syslog
 %define version    1.16
 %define release    %mkrel 1
 
-Name:       perl-%{realname}
+Name:       perl-%{module}
 Version:    %{version}
 Release:    %{release}
 License:    GPL or Artistic
 Group:      Development/Perl
 Summary:    Syslog server ability for POE
-Source:     http://www.cpan.org/modules/by-module/POE/%{realname}-%{version}.tar.gz
-Url:        http://search.cpan.org/dist/%{realname}
-BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires: perl-devel
+Url:        http://search.cpan.org/dist/%{module}
+Source:     http://www.cpan.org/modules/by-module/POE/%{module}-%{version}.tar.gz
 BuildRequires: perl(Carp)
 BuildRequires: perl(IO::Socket)
 BuildRequires: perl(POE)
 BuildRequires: perl(Params::Validate)
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Time::ParseDate)
-
 BuildArch: noarch
+BuildRoot:  %{_tmppath}/%{name}-%{version}
 
 %description
 This module follows the POE::Filter specification. Actually, it
@@ -29,24 +26,23 @@ specification (C<get_one>). If, at some point, POE deprecates the older
 specification, this module will drop support for it. As such, only use
 of the newer specification is recommended.
 
-
-
 %prep
-%setup -q -n %{realname}-%{version} 
+%setup -q -n %{module}-%{version} 
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
 %make
 
 %check
+rm -f t/000-signature.t
 make test
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %makeinstall_std
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
