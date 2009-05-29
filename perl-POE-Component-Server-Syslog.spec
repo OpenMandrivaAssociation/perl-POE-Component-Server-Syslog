@@ -1,15 +1,16 @@
-%define module   POE-Component-Server-Syslog
-%define version    1.16
-%define release    %mkrel 2
+%define upstream_name    POE-Component-Server-Syslog
+%define upstream_version 1.18
 
-Name:       perl-%{module}
-Version:    %{version}
-Release:    %{release}
-License:    GPL or Artistic
+Name:       perl-%{upstream_name}
+Version:    %perl_convert_version %{upstream_version}
+Release:    %mkrel 1
+
+License:    GPL+ or Artistic
 Group:      Development/Perl
 Summary:    Syslog server ability for POE
-Url:        http://search.cpan.org/dist/%{module}
-Source:     http://www.cpan.org/modules/by-module/POE/%{module}-%{version}.tar.gz
+Url:        http://search.cpan.org/dist/%{upstream_name}
+Source0:    http://www.cpan.org/modules/by-module/POE/%{upstream_name}-%{upstream_version}.tar.gz
+
 BuildRequires: perl(Carp)
 BuildRequires: perl(IO::Socket)
 BuildRequires: perl(POE)
@@ -17,7 +18,7 @@ BuildRequires: perl(Params::Validate)
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Time::ParseDate)
 BuildArch: noarch
-BuildRoot:  %{_tmppath}/%{name}-%{version}
+BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}
 
 %description
 This module follows the POE::Filter specification. Actually, it
@@ -27,7 +28,7 @@ specification, this module will drop support for it. As such, only use
 of the newer specification is recommended.
 
 %prep
-%setup -q -n %{module}-%{version} 
+%setup -q -n %{upstream_name}-%{upstream_version} 
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
@@ -49,6 +50,4 @@ rm -rf %{buildroot}
 %doc Changes META.yml LICENSE README
 %{_mandir}/man3/*
 %perl_vendorlib/*
-
-
 
