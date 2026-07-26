@@ -1,15 +1,13 @@
 %define upstream_name    POE-Component-Server-Syslog
-%define upstream_version 1.20
-
 Name:		perl-%{upstream_name}
-Version:	%perl_convert_version %{upstream_version}
-Release:	5
+Version:	1.20
+Release:	6
 
 License:	GPL+ or Artistic
 Group:		Development/Perl
 Summary:	Syslog server ability for POE
-Url:		https://search.cpan.org/dist/%{upstream_name}
-Source0:	http://www.cpan.org/modules/by-module/POE/%{upstream_name}-%{upstream_version}.tar.gz
+Url:		https://metacpan.org/dist/%{upstream_name}
+Source0:	http://www.cpan.org/modules/by-module/POE/%{upstream_name}-%{version}.tar.gz
 
 BuildRequires:	make
 BuildRequires:	perl-devel
@@ -29,7 +27,7 @@ specification, this module will drop support for it. As such, only use
 of the newer specification is recommended.
 
 %prep
-%setup -q -n %{upstream_name}-%{upstream_version} 
+%setup -q -n %{upstream_name}-%{version} 
 
 %build
 perl Makefile.PL INSTALLDIRS=vendor
@@ -59,8 +57,7 @@ make test
 * Fri May 29 2009 Jérôme Quelin <jquelin@mandriva.org> 1.180.0-1mdv2010.0
 + Revision: 380861
 - update to 1.18
-- using %%perl_convert_version
-- fixed license tag
+- using %1.20 fixed license tag
 
 * Fri Aug 08 2008 Thierry Vignaud <tv@mandriva.org> 1.16-2mdv2009.0
 + Revision: 268702
